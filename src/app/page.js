@@ -1,5 +1,6 @@
 import Header from "../components/Header";
 import Button from "../components/Button";
+import Footer from "@/components/Footer";
 import Image from 'next/image'
 import styles from "./page.module.scss";
 import React from "react";
@@ -52,11 +53,13 @@ export default function Home() {
               src='/landing-Illustration.png' 
               alt="Banner illustration"
               fill
+              sizes="100vw"
+              priority
             />
           </div>
         </div>
         <div className={styles.highlights}>
-          {highlights.map((highlight) => (
+          {highlights.map((highlight, index) => (
             <React.Fragment key={highlight.title}>
               <div className={styles.highlight} >
                 <span>
@@ -73,10 +76,28 @@ export default function Home() {
                   <p>{highlight.subtitle}</p>
                 </div>
               </div>
-              <div className={styles.wall}/>
+              {index < highlights.length - 1 && <div className={styles.wall}/>}
+
             </React.Fragment>
           ))}
         </div>
+        <div className={styles.worldMap}>
+          <h2>Our awesome apps <br /> are loved worldwide</h2>
+          <p>We care about your users and we always pay huge attention to create a <br /> product that people <b>love</b> to use every day.</p>
+          <div className={styles.mapImage}>
+            <Image
+              className={styles.map}
+              src='/map-illustration.png'
+              // width={1008}
+              // height={512}
+              alt='world map'
+              fill
+              sizes="100vw"
+              priority={false}
+            />
+          </div>
+        </div>
+        <Footer />
     </main>
   );
 }

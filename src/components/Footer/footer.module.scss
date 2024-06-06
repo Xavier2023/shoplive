@@ -1,0 +1,16 @@
+@import '../../app/variables.module.scss';
+
+.footerSignup {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 4px 4px 6px 0px #0000000D;
+    padding: 20px 40px;
+    width: 80%;
+    margin: 0 auto;
+
+    h2 {
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+}

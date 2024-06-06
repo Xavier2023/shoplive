@@ -13,13 +13,12 @@
   h1 {
     margin: 20px 0;
     color: $primary-color;
-    line-height: 40px;
+    line-height: 50px;
   }
 
   p {
     font-size: 20px;
     margin-bottom: 20px;
-    line-height: 30px;
     color: $primary-color;
   }
 }
@@ -28,15 +27,17 @@
   flex: 1;
 }
 
-.bannerImage {
+.bannerImage,
+.mapImage {
   flex: 1;
   position: relative;
   margin: 20px;
 }
 
-.image {
+.image,
+.map {
   position: static  !important;
-  margin: 20px;
+  // margin: 20px;
   min-width: 200px;
   
 }
@@ -51,7 +52,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
   background-color: $light-grey;
-  padding: 40px;
+  padding: 20px 40px;
   border-radius: 10px;
 }
 
@@ -77,8 +78,19 @@
 
 .wall {
   background-color: #DDDDDD;
-  height: 20vh;
+  height: 60px;
   width: 2px;
+}
+
+.worldMap {
+  margin: 80px 10px;
+  h2 {
+    text-align: center;
+  }
+  p {
+    text-align: center;
+    margin-top: 10px;
+  }
 }
 
 
@@ -89,7 +101,16 @@
   .bannerImage {
     margin: 0;
   }
-  .image {
+  .image,
+  .map {
     margin: 0;
+  }
+
+  .wall {
+    display: none;
+  }
+
+  .highlight {
+    margin: 20px 0 0 30px;
   }
 }
