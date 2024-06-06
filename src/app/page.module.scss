@@ -1,0 +1,95 @@
+@import '../app//variables.module.scss';
+
+.main {
+  padding: 2rem;
+  min-height: 100vh;
+}
+.banner{
+  display: flex;
+  padding: 40px 0;
+  align-items: center;
+  flex-wrap: wrap;
+
+  h1 {
+    margin: 20px 0;
+    color: $primary-color;
+    line-height: 40px;
+  }
+
+  p {
+    font-size: 20px;
+    margin-bottom: 20px;
+    line-height: 30px;
+    color: $primary-color;
+  }
+}
+
+.bannerText {
+  flex: 1;
+}
+
+.bannerImage {
+  flex: 1;
+  position: relative;
+  margin: 20px;
+}
+
+.image {
+  position: static  !important;
+  margin: 20px;
+  min-width: 200px;
+  
+}
+
+.icon {
+  object-fit: contain;
+}
+
+.highlights {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  background-color: $light-grey;
+  padding: 40px;
+  border-radius: 10px;
+}
+
+.highlight {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  span {
+    background-color: $light-blue;
+    padding: 20px;
+    border-radius: 100%;
+  }
+  h3 {
+    font-size: 25px;
+    line-height: 30px ;
+    color: $primary-color;
+  }
+  p {
+    color: $secondary-color;
+  }
+}
+
+.wall {
+  background-color: #DDDDDD;
+  height: 20vh;
+  width: 2px;
+}
+
+
+@media (max-width: 700px) {
+  .banner {
+    flex-direction: column;
+  }
+  .bannerImage {
+    margin: 0;
+  }
+  .image {
+    margin: 0;
+  }
+}

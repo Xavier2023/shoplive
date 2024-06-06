@@ -1,0 +1,109 @@
+@import '../../app/variables.module.scss';
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+.logoContainer {
+    display: flex;
+    align-items: center;
+}
+
+.logoContainer h2 {
+    font-size: 20px;
+    color: $primary-color;
+    margin-left: 8px;
+}
+
+.actionsContainer {
+    display: flex;
+    align-items: center;
+}
+
+.actions {
+    font-weight: normal;
+    color: $secondary-color;
+    font-size: 16px;
+    margin: 4px 16px;
+}
+
+.cta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cta h3 {
+    font-size: 16px;
+    font-weight: 500;
+    color: $accent-color;
+    margin: 0 15px;
+}
+
+.cta span {
+    border: 1px solid $accent-color;
+    border-radius: 50px;
+    padding: 13px 45px;
+}
+.menu {
+    display: none;
+}
+
+
+
+
+
+
+@media (max-width: 875px) {
+    .actionsContainer {
+        display: none;
+    }
+    .cta {
+        display: none
+    }
+    .menu {
+        display: block;
+        font-size: 40px;
+        margin-left: 30px;
+    }
+
+    .mobile {
+        background-color: white;
+        position: absolute;
+        color: $primary-color;
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        top: 50px;
+        width: 100%;
+        border-bottom: 1px solid $accent-color;
+    }
+    .mobileCta,
+    .mobileAction {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .mobileAction h3{
+        border-bottom: 1px solid $primary-color;
+        color: $secondary-color;
+        padding: 10px 100%;
+    }
+ 
+    .btn {
+        border: 1px solid $accent-color;
+        border-radius: 50px;
+        padding: 13px 45px;
+        color: $primary-color;
+        font-size: 20px;
+        margin: 20px 0;
+    }
+
+}
