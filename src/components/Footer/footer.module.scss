@@ -1,16 +1,106 @@
 @import '../../app/variables.module.scss';
 
+.footer {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    margin-top: 150px;
+}
+
+.signupContainer {
+    position: relative;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
 .footerSignup {
+    position: absolute;
+    background-color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 4px 4px 6px 0px #0000000D;
+    box-shadow: 4px 4px 20px 0px #0000000D;
+    border-radius: 10px;
+    width: 94%;
+    left: 3%;
     padding: 20px 40px;
-    width: 80%;
-    margin: 0 auto;
+    top: -90px;
 
     h2 {
         font-size: 30px;
         margin-bottom: 10px;
+        max-width: 300px;
     }
+}
+
+.infoContainer {
+    background-color: $light-grey;
+}
+
+.info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 130px 30px 30px 30px;
+    max-width: 1440px;
+    margin: 0 auto;
+    p {
+        line-height: 30px;
+        max-width: 400px;
+    }
+    ul {
+        color: $secondary-color;
+        font-size: 16px;
+    }
+    li {
+        list-style: none;
+        padding: 5px 0;
+    }
+}
+
+.description {
+    margin-right: 180px;
+}
+
+.listHead {
+    color: $primary-color;
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.copyright {
+    color: #AFB5C0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .footerSignup {
+        flex-direction: column;
+        width: 80%;
+        left: 10%;
+        top: -150px;
+        h2 {
+            font-size: 25px;
+        }
+    }
+
+    .info {
+        padding: 200px 30px 30px 30px;
+
+        .description {
+            margin-right: 0px;
+        }
+
+        ul {
+            margin-bottom: 20px;
+            // margin-top: 20px;
+        }
+
+        .listHead {
+            margin-bottom: 10px;
+        }
+    }
+
 }

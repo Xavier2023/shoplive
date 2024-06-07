@@ -39,7 +39,7 @@ export default function Home() {
     },
   ]
   return (
-    <main className={ styles.main}>
+    <div className={ styles.main}>
         <Header actions={headerActions} />
         <div className={styles.banner}>
           <div className={styles.bannerText}>
@@ -98,6 +98,6 @@ export default function Home() {
           </div>
         </div>
         <Footer />
-    </main>
+    </div>
   );
 }

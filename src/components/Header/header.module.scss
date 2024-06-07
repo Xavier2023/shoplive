@@ -42,6 +42,7 @@
     margin: 0 15px;
 }
 
+
 .cta span {
     border: 1px solid $accent-color;
     border-radius: 50px;
@@ -49,6 +50,13 @@
 }
 .menu {
     display: none;
+}
+
+.cta h3:hover,
+.btn:hover,
+.cta span:hover,
+.header h3:hover {
+    cursor: pointer;
 }
 
 

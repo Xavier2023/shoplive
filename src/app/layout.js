@@ -1,7 +1,9 @@
-import { Inter } from "next/font/google";
+import { Rubik } from "next/font/google";
+import AuthPage from '../components/AuthPage';
+import ContextProviders from "./ContextProviders";
 import "./globals.scss";
 
-const inter = Inter({ subsets: ["latin"] });
+const rubik = Rubik({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Welocme to Shoplive app",
@@ -11,7 +13,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={rubik.className}>
+        <ContextProviders>
+          <AuthPage />
+          <main>
+            {children}
+          </main>
+        </ContextProviders>
+      </body>
     </html>
   );
 }

@@ -1,0 +1,22 @@
+@import '../../app/variables.module.scss';
+
+.input {
+   display: flex;
+   flex-direction: column;
+   margin-bottom: 20px;
+
+   label {
+    color: $secondary-color;
+    font-size: 16px;
+    margin-bottom: 10px;
+    align-self: flex-start;
+   }
+
+   input {
+    background-color: 1px solid $secondary-color;
+    border-radius: 5px;
+    padding: 18px 16px;
+    color: grey;
+    font-size: 16px;
+   }
+}

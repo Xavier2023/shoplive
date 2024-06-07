@@ -1,0 +1,16 @@
+@import '../../app/variables.module.scss';
+
+.checkbox {
+   input {
+      margin-right: 5px;
+      color: $primary-color;
+      font-size: 30px;
+   }
+   input[type='checkbox'] {
+      color: $primary-color;
+   }
+
+   label {
+      color: rgba(79, 99, 172, 1);
+   }
+}

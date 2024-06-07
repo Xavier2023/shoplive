@@ -1,0 +1,50 @@
+@import '../../app/variables.module.scss';
+
+.authpageContainer {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 300;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.authpageContent {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 20px;
+    border-radius: 16px;
+    min-width: 60%;
+    h2 {
+        text-align: center;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        margin-top: 30px;
+    }
+    .button {
+        align-self: center;
+    }
+    p {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    span {
+        color: $primary-color;
+        font-weight: 700;
+        cursor: pointer;
+    }
+}
+
+.close {
+    cursor: pointer;
+    font-size: 40px;
+    color: $secondary-color;
+    align-self: flex-end;
+}
+

@@ -1,12 +1,15 @@
 "use client"
 import Image from 'next/image'
+import { AuthPageContext } from '@/app/ContextProviders';
 import { IoMenu } from "react-icons/io5";
 import HeaderStyle from './header.module.scss'
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 const Header = ({ actions }) => {
 
-    const [showMenu, setShowMenu] = useState(false)
+    const [showMenu, setShowMenu] = useState('')
+
+    const {setDisplayAuthPage} = useContext(AuthPageContext)
 
 
     const onMenuClick = () => {
@@ -31,8 +34,8 @@ const Header = ({ actions }) => {
             ))}
         </div>
         <div className={HeaderStyle.cta}>
-            <h3>Sign in</h3>
-            <span>
+            <h3 onClick={() => setDisplayAuthPage('signin')}>Sign in</h3>
+            <span onClick={() => setDisplayAuthPage('signup')}>
                 <h3>Create an account</h3>
             </span>
         </div>
@@ -45,8 +48,8 @@ const Header = ({ actions }) => {
                     ))}
                 </div>
                 <div className={HeaderStyle.mobileCta}>
-                    <h3>Sign in</h3>
-                    <button className={HeaderStyle.btn}>Create an account</button>
+                    <h3 onClick={() => setDisplayAuthPage('signin')}>Sign in</h3>
+                    <button className={HeaderStyle.btn} onClick={() => setDisplayAuthPage('signup')}>Create an account</button>
                 </div>
             </div>
         )}
