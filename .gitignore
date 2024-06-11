@@ -34,3 +34,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+import { FaHeart } from "react-icons/fa6";
+<FaHeart />
+
+import { MdAutoDelete } from "react-icons/md";
+<MdAutoDelete />

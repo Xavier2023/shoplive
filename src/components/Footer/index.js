@@ -1,7 +1,15 @@
+"use client"
 import Button from "../Button"
+import { useContext} from 'react';
+import { AuthPageContext } from "@/app/ContextProviders";
+import Link from "next/link";
 import footerStyle from './footer.module.scss'
 
+
 function Footer () {
+
+    const {setDisplayAuthPage} = useContext(AuthPageContext)
+
   return (
     <div className={footerStyle.footer}>
         <div className={footerStyle.signupContainer}>
@@ -10,7 +18,7 @@ function Footer () {
                     <h2>Sign up now to see our latest listings</h2>
                     <p>Create an account with us and find the fun.</p>
                 </span>
-                <Button>Create account</Button>
+                <Button onClick={() => setDisplayAuthPage('signup')}>Create account</Button>
             </div>
         </div>
         <div className={footerStyle.infoContainer}>
@@ -21,9 +29,13 @@ function Footer () {
                 </div>
                 <ul className={footerStyle.action}>
                     <li className={footerStyle.listHead}>Engage</li>
-                    <li>Sign in</li>
-                    <li>FAQ</li>
-                    <li>About Us</li>
+                    <li onClick={() => setDisplayAuthPage('signin')}>Sign in</li>
+                    <li>
+                        <Link href='/faq'>FAQ</Link> 
+                    </li>
+                    <li>
+                        <Link href='/#about'>About Us</Link> 
+                    </li>
                 </ul>
                 <ul className={footerStyle.action}>
                     <li className={footerStyle.listHead}>Earn Money</li>

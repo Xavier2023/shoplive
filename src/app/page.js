@@ -1,46 +1,45 @@
+'use client'
 import Header from "../components/Header";
 import Button from "../components/Button";
 import Footer from "@/components/Footer";
 import Image from 'next/image'
 import styles from "./page.module.scss";
-import React from "react";
+import React, { useEffect } from "react";
+import { useRouter } from "next/navigation";
+
+
+const highlights = [
+  {
+    title: '500+',
+    subtitle: 'Shoping Items',
+    icon: '/listing.png'
+  },
+  {
+    title: '100+',
+    subtitle: 'Users',
+    icon: '/user.png'
+  },
+  {
+    title: '30+',
+    subtitle: 'Servers',
+    icon: '/server.png'
+  },
+]
 
 export default function Home() {
 
-  const headerActions = [
-    {
-      title: 'About',
-    },
-    {
-      title: 'Features',
-    },
-    {
-      title: 'Pricing',
-    },
-    {
-      title: 'Testimonials',
+  const isAuthenticated = true
+  const router = useRouter()
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.push('/home')
     }
-  ]
-  const highlights = [
-    {
-      title: '500+',
-      subtitle: 'Shoping Items',
-      icon: '/listing.png'
-    },
-    {
-      title: '100+',
-      subtitle: 'Users',
-      icon: '/user.png'
-    },
-    {
-      title: '30+',
-      subtitle: 'Servers',
-      icon: '/server.png'
-    },
-  ]
+  }, [])
+  
   return (
     <div className={ styles.main}>
-        <Header actions={headerActions} />
+        <Header />
         <div className={styles.banner}>
           <div className={styles.bannerText}>
             <h1>Find <b>all you need</b> in <b>Shoplive</b> platform</h1>
@@ -58,7 +57,7 @@ export default function Home() {
             />
           </div>
         </div>
-        <div className={styles.highlights}>
+        <div className={styles.highlights} id="about">
           {highlights.map((highlight, index) => (
             <React.Fragment key={highlight.title}>
               <div className={styles.highlight} >

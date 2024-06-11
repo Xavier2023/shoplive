@@ -1,0 +1,24 @@
+@import '../../app/variables.module.scss';
+
+
+.tagContainer {
+    background-color: $light-grey;
+    border-radius: 16px;
+    min-width: 120px;
+    padding: 10px 0;
+    margin: 5px 0px;
+    cursor: pointer;
+    
+    p {
+        font-size: 20px;
+        text-align: center;
+    }
+}
+
+.selected {
+    background-color: $accent-color;
+    
+    p {
+        color: white;
+    }
+}

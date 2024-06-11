@@ -25,7 +25,6 @@ function AuthPage () {
       }
     })
   }
-  console.log(formData)
 
 
   const authPageContent = {
