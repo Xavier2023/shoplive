@@ -4,8 +4,9 @@ import Button from "../components/Button";
 import Footer from "@/components/Footer";
 import Image from 'next/image'
 import styles from "./page.module.scss";
-import React, { useEffect } from "react";
+import React, {useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useUser } from "@/custom hooks/useUser";
 
 
 const highlights = [
@@ -28,14 +29,15 @@ const highlights = [
 
 export default function Home() {
 
-  const isAuthenticated = true
   const router = useRouter()
 
+  const { authenticated } = useUser()
+
   useEffect(() => {
-    if (isAuthenticated) {
+    if ( authenticated ) {
       router.push('/home')
     }
-  }, [])
+  }, [authenticated])
   
   return (
     <div className={ styles.main}>

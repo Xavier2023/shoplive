@@ -1,0 +1,22 @@
+@import "../../app/variables.module.scss";
+
+.errorContainer {
+    position: fixed;
+    top: 10px;
+    right: 450px;
+    background-color: red;
+    padding: 20px;
+    border-radius: 10px;
+
+    h4 {
+        color: white;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .errorContainer {
+        top: 90px;
+        right: 55px;
+    }
+}

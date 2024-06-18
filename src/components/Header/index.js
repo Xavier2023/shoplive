@@ -6,23 +6,21 @@ import HeaderStyle from './header.module.scss'
 import { useContext, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useUser } from '@/custom hooks/useUser';
 
-const Header = ({ actions }) => {
 
+const Header = () => {
 
-    const isAuthenticated = true
+    const { authenticated } = useUser()
     const [showMenu, setShowMenu] = useState('')
     const {setDisplayAuthPage} = useContext(AuthPageContext)
     const path = usePathname()
-
-
-
 
     const onMenuClick = () => {
         setShowMenu(prevState => !prevState)
     }
 
-    const headerActions = isAuthenticated ? [
+    const headerActions = authenticated ? [
             {
                 title: 'Home',
                 route: '/home'
@@ -67,7 +65,7 @@ const Header = ({ actions }) => {
                 </Link>
             ))}
         </div>
-        {isAuthenticated ? (
+        {authenticated ? (
             <div className={HeaderStyle.cta}>
                 <span>
                     <h3>Add new item</h3>
@@ -90,7 +88,7 @@ const Header = ({ actions }) => {
                         <h3 key={action.title} > <Link href={action.route}>{action.title}</Link></h3>
                     ))}
                 </div>
-                {!isAuthenticated ? (
+                {authenticated ? (
                     <div className={HeaderStyle.mobileCta}>
                         <h3 onClick={() => setDisplayAuthPage('signin')}>Sign in</h3>
                         <button className={HeaderStyle.btn} onClick={() => setDisplayAuthPage('signup')}>Create an account</button>

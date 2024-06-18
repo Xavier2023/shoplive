@@ -1,20 +1,26 @@
 "use client"
 import { useContext, useState } from "react"
-import { AuthPageContext } from "@/app/ContextProviders"
+import { AuthPageContext, ErrorMessageContext } from "@/app/ContextProviders"
 import Input from "../Input"
 import Checkbox from "../Checkbox"
 import { IoIosCloseCircleOutline } from "react-icons/io"
 import Button from "../Button"
 import authpageStyle from './authPage.module.scss'
+import { register, login, AUTH_TOKEN } from "@/http/auth"
+import { useUser } from "@/custom hooks/useUser"
 
 function AuthPage () {
   const {displayAuthPage, setDisplayAuthPage} = useContext(AuthPageContext)
+  const {setErrorMessage} = useContext(ErrorMessageContext)
+  const { authenticate } = useUser()
   const  [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
     agreed: ''
   })
+  const isLoginFormValid = !!formData.email && !!formData.password
+  const isRegisterFormValid = !!formData.name && !!formData.email && !!formData.password
 
   const handleChange = (key, event) => {
     const { value, type, checked} = event.target
@@ -24,6 +30,30 @@ function AuthPage () {
         [key]: type === 'checkbox' ? checked : value 
       }
     })
+  }
+
+  const handleSignup = async () => {
+    try {
+      const res = await register(formData)
+      const token = res?.data?.token
+      authenticate(token)
+    } catch (error) {
+        const err = error?.response?.data?.message || 'Something went wrong'
+        setErrorMessage(err)
+    }
+    setDisplayAuthPage(null)
+  }
+
+  const handleLogin = async () => {
+    try {
+      const res = await login(formData)
+      const token = res?.data?.token
+      authenticate(token)
+    } catch (error) {
+      const err = error?.response?.data?.message || 'Something went wrong'
+      setErrorMessage(err)
+    }
+    setDisplayAuthPage(null)
   }
 
 
@@ -49,7 +79,7 @@ function AuthPage () {
               placeholder="Password.."
               value={formData.password}
             />
-            <Button className={authpageStyle.button}>Sign In</Button>
+            <Button disabled={!isLoginFormValid} className={authpageStyle.button} onClick={handleLogin}>Sign In</Button>
           </form>
           <p>Don’t have an account? <span onClick={() => setDisplayAuthPage(prevstate => prevstate = 'signup')}>Create an account.</span></p>
         </div>
@@ -90,7 +120,7 @@ function AuthPage () {
             name='agreed' 
             checked={formData.agreed}
           />
-            <Button className={authpageStyle.button}>Sign up</Button>
+            <Button disabled={!formData.agreed || !isRegisterFormValid} onClick={handleSignup} className={authpageStyle.button}>Create account</Button>
           </form>
           <p>Already have an account? <span onClick={() => setDisplayAuthPage(prevstate => prevstate = 'signin')} >Sign in.</span></p>
         </div>
@@ -104,7 +134,11 @@ function AuthPage () {
       {displayAuthPage && (
         <div className={authpageStyle.authpageContainer}>
           <div className={authpageStyle.authpageContent}>
-            <IoIosCloseCircleOutline className={authpageStyle.close} onClick={() => setDisplayAuthPage(null)} />
+              <IoIosCloseCircleOutline className={authpageStyle.close} onClick={() => {
+                setDisplayAuthPage(null)
+                setFormData({})
+              }} 
+            />
               <h2>{authPageContent[displayAuthPage]?.title}</h2>
 
                 {authPageContent[displayAuthPage]?.content}

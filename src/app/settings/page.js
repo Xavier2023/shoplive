@@ -1,9 +1,13 @@
+"use client"
 import React from 'react'
 import settingStyle from './setting.module.scss'
 import Header from '@/components/Header'
 import Button from '@/components/Button'
 import { IoIosArrowForward } from "react-icons/io";
 import Link from 'next/link';
+import { AUTH_TOKEN } from '@/http/auth';
+import { useUser } from '@/custom hooks/useUser'
+import ProctectedRoute from '@/hoc/ProctectedRoute'
 
 const links = [
   {
@@ -25,6 +29,7 @@ const links = [
 ]
 
 const Settings = () => {
+  const { logout } = useUser()
   return (
     <>
       <div className={settingStyle.settingContainer}>
@@ -39,10 +44,10 @@ const Settings = () => {
             </Link>
             ))}
             
-          <Button className={settingStyle.btn}>Log out</Button>
+          <Button className={settingStyle.btn} onClick={logout}>Log out</Button>
       </div> 
     </>
   )
 }
 
-export default Settings
+export default ProctectedRoute(Settings)
