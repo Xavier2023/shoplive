@@ -1,12 +1,14 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import homeStyle from './homescreen.module.scss'
 import Header from '@/components/Header'
 import Tag from '@/components/Tag'
-import { data } from './data'
 import Card from '@/components/Card'
 import ProctectedRoute from '@/hoc/ProctectedRoute'
 import { useRouter } from 'next/navigation'
+import { getServices } from '@/http/services'
+import { ErrorMessageContext, ServiceContext } from '../ContextProviders'
+import { BASE_URL } from '@/http'
 
 const tagArray = [
   {
@@ -28,15 +30,31 @@ const HomeScreen = () => {
   const router = useRouter()
   const [selectedCategory, setSelectedCategory] = useState(null)
   const [filteredItems, setFilteredItems] = useState([])
+  const {serviceData, setServiceData} = useContext(ServiceContext)
+  const {setErrorMessage} = useContext(ErrorMessageContext)
+
+  const getServicesData = async () => {
+    try {
+      const res = await getServices()
+      setServiceData(res.data)
+      
+    } catch (error) {
+      setErrorMessage('Failed to fetch services')
+    }
+  }
+
+  useEffect(() => {
+    getServicesData()
+  }, [])
 
   useEffect(() => {
     if (selectedCategory) {
-      const filtered = data.filter(item => item?.category === selectedCategory)
+      const filtered = serviceData.filter(item => item?.category === selectedCategory)
      setFilteredItems(filtered)
     } else {
-      setFilteredItems(data)
+      setFilteredItems(serviceData)
     }
-  }, [selectedCategory])
+  }, [selectedCategory, serviceData])
 
   return (
     <div className={homeStyle.homeContainer}>
@@ -62,9 +80,9 @@ const HomeScreen = () => {
           <Card 
             key={item._id}
             title={item.title}
-            image={item.image}
+            image={`${BASE_URL}/${item.image?.path}`}
             isFavorite={item.liked}
-            subtitle={item.price.toLocaleString('en-US')}
+            subtitle={item.price}
             onClick={() => {
               router.push(`/services/${item?._id}`)
             }}

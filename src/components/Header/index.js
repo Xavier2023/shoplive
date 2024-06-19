@@ -68,7 +68,9 @@ const Header = () => {
         {authenticated ? (
             <div className={HeaderStyle.cta}>
                 <span>
-                    <h3>Add new item</h3>
+                    <Link href='/add-item'>
+                        <h3>Add new item</h3>
+                    </Link>
                 </span>
             </div>
         ) : (
@@ -88,14 +90,16 @@ const Header = () => {
                         <h3 key={action.title} > <Link href={action.route}>{action.title}</Link></h3>
                     ))}
                 </div>
-                {authenticated ? (
+                {!authenticated ? (
                     <div className={HeaderStyle.mobileCta}>
                         <h3 onClick={() => setDisplayAuthPage('signin')}>Sign in</h3>
                         <button className={HeaderStyle.btn} onClick={() => setDisplayAuthPage('signup')}>Create an account</button>
                 </div>
                 ) : (
                     <div className={HeaderStyle.mobileCta}>
-                        <button className={HeaderStyle.btn} >Add new item</button>
+                        <Link href='/add-item'>
+                            <button className={HeaderStyle.btn} >Add new item</button>
+                        </Link>
                     </div>
                 )}
             </div>
